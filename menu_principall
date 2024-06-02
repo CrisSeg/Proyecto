@@ -67,19 +67,6 @@ class constructora
                     {
                     	Console.WriteLine("Obrero no encontrado");
                     }
-                    bool esta=false;
-                    foreach (Obrero ele in ListaObreros)
-                    { if (ele.nroLegajo==Obrero[2])
-                    	{ esta=true;
-                    		ListaObreros.Remove(Obrero);
-                    		break;
-                    	}
-                    }
-                    if (esta)
-                    {
-                    	Console.WriteLine("El obrero se elimino con éxito");
-                    }
-                    Console.ReadKey();
                     break;
                 case "3":
                     AgregarJefeObra();
