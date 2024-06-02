@@ -108,11 +108,11 @@ namespace proyecto
 
 
         Obrero ObreroAEliminar = null;
-        foreach( Obrero o in ListaObreros)
+        foreach( Obrero o in listaObreros)
         {
-        	if(Obrero.nrolegajo == NroLegajo)
+        	if(o.nrolegajo == nroLegajo)
         	{
-        		ObreroAEliminar = Obrero;
+        		ObreroAEliminar = o;
         		break;
         	}
         }
