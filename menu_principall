@@ -2,11 +2,11 @@ using System;
 using System.Collections;
 namespace proyecto
 {
-class constructora
-{	
+	class Menu
+	{	
 
-    static void Main(string[] args)
-    {	 
+    	static void Main(string[] args)
+    	{	 
     	 bool continuar = true;
          do
         {
