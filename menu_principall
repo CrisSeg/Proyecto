@@ -8,13 +8,13 @@ class constructora
     static void Main(string[] args)
     {	 
     	 bool continuar = true;
-        do
+         do
         {
             Console.WriteLine("Menú de opciones:");
             Console.WriteLine("1. Contratar un nuevo obrero");
             Console.WriteLine("2. Eliminar un obrero");
             Console.WriteLine("3. Contratar a un jefe de obra");
-            Console.WriteLine("4. Modificar el estado de avance de una obra.");
+	    Console.WriteLine("4. Modificar el estado de avance de una obra.");
 	    Console.WriteLine("5. Ver listados y procentajes");
 	    Console.WriteLine("6. Dar de baja a un jefe");
             Console.WriteLine("7. Salir");
@@ -25,48 +25,9 @@ class constructora
             {
             	case "1":
                     AgregarObreros();
-                     	Console.Write("Ingrese nombre completo: ");
-                     	string nombreObrero = Console.ReadLine();
-                     	Console.Write("Ingrese dni: ");
-                     	int dni = int.Parse(Console.ReadLine());
-                     	Console.Write("Ingrese número de legajo: ");
-                     	int nroLegajo = int.Parse(Console.ReadLine());
-                     	Console.Write("Ingrese el sueldo: ");
-                     	double sueldo =  double.Parse(Console.ReadLine());
-                     	Console.Write("Ingrese su cargo: ");
-                     	string cargo = Console.ReadLine();
-
-
-                     	Obrero nuevoObrero = new Obrero(nombreObrero, dni, nroLegajo, sueldo, cargo);
-                     	ListaObreros.Add(nuevoObrero);
-                     	Console.WriteLine("Obrero agregado correctamente.");
-
-                    }break;
-                 case "2":
+                    break;
+                case "2":
                     EliminarObrero();
-                    Console.Write("Ingrese el numero de legajo del obrero a eliminar : ");
-                    int nroLegajo = int.Parse(Console.ReadLine());
-
-
-                    Obrero obreroAEliminar = null;
-                    foreach( Obrero o in ListaObreros)
-                    {
-                    	if(obrero.nrolegajo == NroLegajo)
-                    	{
-                    		obreroAEliminar = Obrero;
-                    		break;
-
-                    	}
-                    }
-                    if(obreroAEliminar != null) 
-                    {
-                    	ListaObreros.remove(obreroAEliminar);
-                    	Console.WriteLine("Obrero eliminado correctamente")
-                    }
-                    else
-                    {
-                    	Console.WriteLine("Obrero no encontrado");
-                    }
                     break;
                 case "3":
                     AgregarJefeObra();
@@ -75,33 +36,33 @@ class constructora
                     ListaObrasEj();
                     break;
                 case "5":
-				    Console.WriteLine("Submenú de opciones:");
-				    Console.WriteLine("1. Mostrar listado de obreros");
-				    Console.WriteLine("2. Mostrar listado de obras en ejecución");
-				    Console.WriteLine("3. Mostrar listado de obras finalizadas");
-				    Console.WriteLine("4. Mostrar listado de jefes");
-				    Console.WriteLine("5. Mostrar porcentaje de obras de remodelación sin finalizar");
-				    Console.WriteLine("6. Salir");
-				    Console.Write("Seleccione una opción: ");
-				    string op = Console.ReadLine();
-                    switch(op)
+		     Console.WriteLine("Submenú de opciones:");
+		     Console.WriteLine("1. Mostrar listado de obreros");
+		     Console.WriteLine("2. Mostrar listado de obras en ejecución");
+		     Console.WriteLine("3. Mostrar listado de obras finalizadas");
+		     Console.WriteLine("4. Mostrar listado de jefes");
+		     Console.WriteLine("5. Mostrar porcentaje de obras de remodelación sin finalizar");
+		     Console.WriteLine("6. Salir");
+		     Console.Write("Seleccione una opción: ");
+		     string op = Console.ReadLine();
+                      switch(op)
 					{
                             case "1":
                              ListaObreros();
                              break;
-							case "2":
+			    case "2":
                              ListaObrasEj();
                              break;
-							case "3":
+			    case "3":
                              ListaObrasFin();
                              break;
-							case "4":
+			    case "4":
                              ListaObreros();
                              break;
-							case "5":
+			    case "5":
                              ListaObrasEj();
                              break;
-							case "7":
+			    case "7":
                              continuar = false;
                              break;
                             default:
@@ -109,7 +70,7 @@ class constructora
                              break;
                     }
                     break;
-				case "6":
+		case "6":
                     EliminarJefeObra();
                     break;		
                 case "7":
@@ -121,3 +82,48 @@ class constructora
             }
         } while (continuar);
     }
+    static void AgregarObreros()
+   {
+        Console.Write("Ingrese nombre completo: ");
+        string nombreObrero = Console.ReadLine();
+        Console.Write("Ingrese dni: ");
+        int dni = int.Parse(Console.ReadLine());
+        Console.Write("Ingrese número de legajo: ");
+        int nroLegajo = int.Parse(Console.ReadLine());
+        Console.Write("Ingrese el sueldo: ");
+        double sueldo =  double.Parse(Console.ReadLine());
+	Console.Write("Ingrese su cargo: ");
+	string cargo = Console.ReadLine();
+		
+		
+        Obrero nuevoObrero = new Obrero(nombreObrero, dni, nroLegajo, sueldo, cargo);
+        ListaObreros.Add(nuevoObrero);
+        Console.WriteLine("Obrero agregado correctamente.");
+    }
+   
+    static void EliminarObrero()
+    {
+    	Console.Write("Ingrese el numero de legajo del obrero a eliminar : ");
+        int nroLegajo = int.Parse(Console.ReadLine());
+
+
+        Obrero obreroAEliminar = null;
+        foreach( Obrero o in ListaObreros)
+        {
+        	if(obrero.nrolegajo == NroLegajo)
+        	{
+        		obreroAEliminar = Obrero;
+        		break;
+        	}
+        }
+        if(obreroAEliminar != null)
+        {
+        	ListaObreros.Remove(obreroAEliminar);
+        	Console.WriteLine("Obrero eliminado correctamente")
+        }
+        else{
+        	Console.WriteLine("Obrero no encontrado");
+        }
+    }
+}
+}
