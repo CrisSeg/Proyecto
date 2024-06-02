@@ -33,7 +33,7 @@ namespace proyecto
                     AgregarJefeObra();
                     break;
                 case "4":
-                    ListaObrasEj();
+                    ModificarEstadoObra();
                     break;
                 case "5":
 		     Console.WriteLine("Submenú de opciones:");
@@ -107,18 +107,18 @@ namespace proyecto
         int nroLegajo = int.Parse(Console.ReadLine());
 
 
-        Obrero obreroAEliminar = null;
+        Obrero ObreroAEliminar = null;
         foreach( Obrero o in ListaObreros)
         {
-        	if(obrero.nrolegajo == NroLegajo)
+        	if(Obrero.nrolegajo == NroLegajo)
         	{
-        		obreroAEliminar = Obrero;
+        		ObreroAEliminar = Obrero;
         		break;
         	}
         }
-        if(obreroAEliminar != null)
+        if(ObreroAEliminar != null)
         {
-        	ListaObreros.Remove(obreroAEliminar);
+        	ListaObreros.Remove(ObreroAEliminar);
         	Console.WriteLine("Obrero eliminado correctamente")
         }
         else{
