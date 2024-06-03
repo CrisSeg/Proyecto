@@ -1,11 +1,3 @@
-﻿/*
- * Created by SharpDevelop.
- * User: nico_
- * Date: 28/4/2024
- * Time: 16:28
- * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
- */
 using System;
 using System.Collections;
 
