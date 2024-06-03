@@ -15,7 +15,7 @@ namespace proyecto
             Console.WriteLine("2. Eliminar un obrero");
             Console.WriteLine("3. Contratar a un jefe de obra");
 	    Console.WriteLine("4. Modificar el estado de avance de una obra.");
-	    Console.WriteLine("5. Ver listados y procentajes");
+	    Console.WriteLine("5. Submenú: listados y procentajes");
 	    Console.WriteLine("6. Dar de baja a un jefe");
             Console.WriteLine("7. Salir");
             Console.Write("Seleccione una opción: ");
