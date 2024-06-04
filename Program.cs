@@ -93,8 +93,8 @@ namespace Proyecto
         	int nroLegajo = int.Parse(Console.ReadLine());
         	Console.Write("Ingrese el sueldo: ");
         	double sueldo =  double.Parse(Console.ReadLine());
-			Console.Write("Ingrese su cargo: ");
-			string cargo = Console.ReadLine();
+		Console.Write("Ingrese su cargo: ");
+		string cargo = Console.ReadLine();
 		
 		
         	Obrero nuevoObrero = new Obrero(nombreObrero, dni, nroLegajo, sueldo, cargo);
@@ -141,7 +141,7 @@ namespace Proyecto
 		double bonificacion = double.Parse(Console.ReadLine());
 			
 		JefeObra jfObra = new JefeObra(nombreObrero, dni, nroLegajo, sueldo, cargo, numObra, numGrupo, bonificacion);
-		ArrayList listObras = new ArrayList();
+		ArrayList listObras = new ArrayList();  //Tomo la lista de obras y grupos
 		listObras = emp.TodasObras();
 		ArrayList listGrupos = new ArrayList();
 		listGrupos = emp.TodosGrupos();
