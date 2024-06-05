@@ -14,7 +14,7 @@ namespace Proyecto
 	public class Grupo
 	{
 		private int nroObra;
-		private JefeObra jefObra;
+		private int nroLegajoJefObra;
 		private ArrayList listaIntegrantes;
 		
 		public Grupo(int nroObra, JefeObra jefObra)
@@ -30,10 +30,10 @@ namespace Proyecto
 			get{return nroObra;}
 		}
 		
-		public JefeObra JefObra
+		public int NroLegajoJefObra
 		{
-			set{jefObra = value;}
-			get{return jefObra;}
+			set{nroLegajoJefObra = value;}
+			get{return nroLegajoJefObra;}
 		}
 		
 		public void AgregarIntegrantes(Obrero o)
