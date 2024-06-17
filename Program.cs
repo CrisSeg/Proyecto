@@ -61,7 +61,7 @@ namespace Proyecto
                             	 						ListaObreros();
                             	 						break;
 			    						case "5":
-                            	 						ListaObrasEj();
+                            	 						ListaObrasEje();
                             	 						break;
                             						default:
                             	 						Console.WriteLine("Opción no válida.");
@@ -194,15 +194,15 @@ namespace Proyecto
 			}
 			Console.WriteLine("Se logro actualizar el estado de la obra.");
 		}
-		static void listaObrasFin(Empresa emp)
+		static void ListaObrasFin(Empresa emp)
 		{
-			ArrayList listaObrasFin = new ArrayList();
-			listaObrasFin = emp.TodasObrasFin();
-			foreach (Obra ob in listaObrasFin) {
+			ArrayList ListaObrasFin = new ArrayList();
+			ListaObrasFin = emp.TodasObrasFin();
+			foreach (Obra ob in ListaObrasFin) {
 				Console.WriteLine(ob);
 			}
 		}
-		static void jefeObra(JefeObra jef)
+		static void ListaObreros(JefeObra jef)
 		{
 			ArrayList jefeObra = new ArrayList();
 			jefeObra = jef.JefeObra();
@@ -210,13 +210,21 @@ namespace Proyecto
 				Console.WriteLine(obr);
 			}
 		}
-		static void jefeObra(JefeObra jef)
+		static void ListaObrasEje(Empresa emp)
 		{
-			ArrayList jefeObra = new ArrayList();
-			jefeObra = jef.JefeObra();
-			foreach (jefe obr in jefeObra) {
-				Console.WriteLine(obr);
+			ArrayList listaObraEj = new ArrayList();
+			listaObraEj = emp.TodasObras();
+			
+			int obrasEj = listaObraEj.Count;
+			int obrasEjR = 0;
+			foreach(Obra obr in listaObraEj){
+				if(obr.EstadoAvance < 100 && obr.TipoObra == "remodelacion"){
+					obrasEjR++;
+				}
 			}
+			double porcentaje = (obrasEjR*100)/obrasEj;
+				
+			Console.WriteLine("Porcentaje de obras de remodelacion sin finalizar: {0}%", porcentaje);
 		}
 		static void EliminarJefeObra(Empresa emp)
 		{
