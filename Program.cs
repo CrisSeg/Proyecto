@@ -194,6 +194,14 @@ namespace Proyecto
 			}
 			Console.WriteLine("Se logro actualizar el estado de la obra.");
 		}
+		static void ListaObrasEj(Empresa emp)
+		{
+			ArrayList ListaObrasEj = new ArrayList();
+			ListaObrasEj = emp.TodasObras();
+			foreach (Obra obr in ListaObrasEj) {
+				Console.WriteLine(obr);
+			}
+		}
 		static void ListaObrasFin(Empresa emp)
 		{
 			ArrayList ListaObrasFin = new ArrayList();
