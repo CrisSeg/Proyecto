@@ -194,7 +194,30 @@ namespace Proyecto
 			}
 			Console.WriteLine("Se logro actualizar el estado de la obra.");
 		}
-
+		static void listaObrasFin(Empresa emp)
+		{
+			ArrayList listaObrasFin = new ArrayList();
+			listaObrasFin = emp.TodasObrasFin();
+			foreach (Obra ob in listaObrasFin) {
+				Console.WriteLine(ob);
+			}
+		}
+		static void jefeObra(JefeObra jef)
+		{
+			ArrayList jefeObra = new ArrayList();
+			jefeObra = jef.JefeObra();
+			foreach (jefe obr in jefeObra) {
+				Console.WriteLine(obr);
+			}
+		}
+		static void jefeObra(JefeObra jef)
+		{
+			ArrayList jefeObra = new ArrayList();
+			jefeObra = jef.JefeObra();
+			foreach (jefe obr in jefeObra) {
+				Console.WriteLine(obr);
+			}
+		}
 		static void EliminarJefeObra(Empresa emp)
 		{
 			Console.WriteLine("Ingrese el dni del jefe de obra que desea eliminar: ");
