@@ -168,7 +168,7 @@ namespace Proyecto
 			ArrayList listaDeObreros = new ArrayList();
 			listaDeObreros = emp.TodosObreros();
 			foreach (Obrero elem in listaDeObreros) {
-				Console.WriteLine(elem);
+				Console.WriteLine(elem.NombreObrero+" "+elem.Cargo+" "+elem.Dni+" $"+elem.Sueldo);
 			}
 		}
 
@@ -196,28 +196,33 @@ namespace Proyecto
 		}
 		static void ListaObrasEj(Empresa emp)
 		{
-			ArrayList ListaObrasEj = new ArrayList();
-			ListaObrasEj = emp.TodasObras();
-			foreach (Obra obr in ListaObrasEj) {
-				Console.WriteLine(obr);
+			ArrayList listaObrasEj = new ArrayList();
+			listaObrasEj = emp.TodasObras();
+			foreach (Obra obr in listaObrasEj) {
+				Console.WriteLine(obr.CodigoObra +" "+obr.NombreProp+" "+obr.Costo+" "+obr.NombreProp+" "+obr.TipoObra);
 			}
 		}
+		
 		static void ListaObrasFin(Empresa emp)
 		{
-			ArrayList ListaObrasFin = new ArrayList();
-			ListaObrasFin = emp.TodasObrasFin();
-			foreach (Obra ob in ListaObrasFin) {
-				Console.WriteLine(ob);
+			ArrayList listaObrasFin = new ArrayList();
+			listaObrasFin = emp.TodasObrasFin();
+			foreach (Obra ob in listaObrasFin) {
+				Console.WriteLine(ob.NombreProp+" "+ob.NombreProp+" "+ob.Costo+" "+ob.NombreProp+" "+ob.TipoObra);
 			}
 		}
-		static void ListaObreros(JefeObra jef)
+		
+		static void ListaObreros(Empresa emp)
 		{
-			ArrayList jefeObra = new ArrayList();
-			jefeObra = jef.JefeObra();
-			foreach (jefe obr in jefeObra) {
-				Console.WriteLine(obr);
+			ArrayList listaObre = emp.TodosObreros();
+			foreach (Obrero obr in listaObre) {
+				if(obr.Cargo == "Jefe Obra" || obr.Cargo == "Jefe de Obra")
+				{
+					Console.WriteLine(obr.NombreObrero+" "+obr.Cargo+" "+obr.Dni+" $"+obr.Sueldo);
+				}
 			}
 		}
+		
 		static void ListaObrasEje(Empresa emp)
 		{
 			ArrayList listaObraEj = new ArrayList();
