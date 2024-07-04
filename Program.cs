@@ -78,9 +78,8 @@ namespace Proyecto
             				}
 				}
 	        	}
-            		catch (PuestoOcupado) {
-				Console.WriteLine("El jefe de obra no se pudo asignar a la obra o grupo");}
-	    		catch(Exception){
+	    		catch(Exception e){
+				console.WriteLine(e.Message); //Muestra un mensaje si captura algo
 			}
 			Console.Write("Press any key to continue . . . ");
 			Console.ReadKey(true);
@@ -119,7 +118,21 @@ namespace Proyecto
         			else{
         				Console.WriteLine("El obrero no se elimino con exito.");
         				Console.WriteLine("El obrero es inexistente o ingrese el número de legajo correctamente.");}
+				break; //Dejamos de recorrer la lista
         		}
+
+			ArrayList listaGrupos = emp.TodosGrupos();
+        		foreach (Grupo elem in listaGrupos) {
+        		if (elem.NroObra == codObr) {
+        			ArrayList listaIntegrantes = elem.TodosIntegrantes();
+        			foreach(Obrero ele in listaIntegrantes){
+        				if (ele.NroLegajo == nroLegajo) {
+        					elem.EliminarObrero(ele);
+        				}
+        				break; //Dejamos de recorrer la lista
+        			}
+        		}
+        	}
     		}
 		
 	        static void AgregarJefeDeOBra(Empresa emp)
@@ -261,6 +274,7 @@ namespace Proyecto
 							ele.DniJefObra = 0;       //Ponemos el dni de jefe de obra en cero
 							el.NroLegajoJfObra = 0;   //El nro de legajo tambien
 						}
+						break; //Deja de recorrer la lista;
 					}
 				}
 			}
