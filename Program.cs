@@ -8,6 +8,26 @@ namespace Proyecto
 		public static void Main(string[] args)
 		{
 			Empresa emp = new Empresa(); //Creo la empresa donde vamos a realizar el proyecto
+			Obra obra1 = new Obra("Pepito", 153548, 1, "remodelación", 20, 0, 50000);
+			Obra obra2 = new Obra("Gabi", 2165465, 2, "pintura", 50, 0, 10000);
+			Obra obra3 = new Obra("Alfredo", 1565458, 3,"construcción", 0, 0, 100000);
+			Obra obra4 = new Obra("Inc", 245665, 4, "construcción", 60, 0, 120000);
+			Obra obra5 = new Obra("Argn", 864164, 5, "remodelación", 20, 0, 9000);
+			Grupo grupo1 = new Grupo(1,0);
+			Grupo grupo2 = new Grupo(2,0);
+			Grupo grupo3 = new Grupo(3,0);
+			Grupo grupo4 = new Grupo(4,0);
+			Grupo grupo5 = new Grupo(5,0);
+			emp.AgregarObra(obra1);
+			emp.AgregarObra(obra2);
+			emp.AgregarObra(obra3);
+			emp.AgregarObra(obra4);
+			emp.AgregarObra(obra5);
+			emp.AgregarGrupo(grupo1);
+			emp.AgregarGrupo(grupo2);
+			emp.AgregarGrupo(grupo3);
+			emp.AgregarGrupo(grupo4);
+			emp.AgregarGrupo(grupo5);
 			try {
 				Console.WriteLine("Menú de opciones:");
            	 		Console.WriteLine("1. Contratar un nuevo obrero");
