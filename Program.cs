@@ -165,20 +165,22 @@ namespace Proyecto1
 		try
 			{
 				Console.Write("Ingrese nombre completo: ");
-        		string nombreObrero = Console.ReadLine();
-        		Console.Write("Ingrese dni: ");
-        		int dni = int.Parse(Console.ReadLine());
-        		Console.Write("Ingrese número de legajo: ");
-        		int nroLegajo = int.Parse(Console.ReadLine());
-        		Console.Write("Ingrese el sueldo: ");
-        		double sueldo =  double.Parse(Console.ReadLine());
-        		string cargo = "Jefe Obra";
+        			string nombreObrero = Console.ReadLine();
+        			Console.Write("Ingrese dni: ");
+        			int dni = int.Parse(Console.ReadLine());
+        			Console.Write("Ingrese número de legajo: ");
+        			int nroLegajo = int.Parse(Console.ReadLine());
+        			Console.Write("Ingrese el sueldo: ");
+        			double sueldoSinBonificacion =  double.Parse(Console.ReadLine());
+        			string cargo = "Jefe Obra";
 				Console.WriteLine("Asigne número de obra:");
 				int numObra = int.Parse(Console.ReadLine());
 				Console.WriteLine("Asigne un grupo libre(número de grupo): ");
 				int numGrupo = int.Parse(Console.ReadLine());
 				Console.WriteLine("Ingrese la bonficacion que se la va a dar al jefe: ");
 				double bonificacion = double.Parse(Console.ReadLine());
+			
+				double sueldo = sueldoSinBonificacion + (sueldoSinBonificacion*bonificacion)/100;
 			
 				JefeObra jfObra = new JefeObra(nombreObrero, dni, nroLegajo, sueldo, cargo, numObra, numGrupo, bonificacion);
 				ArrayList listObras = new ArrayList();
@@ -215,7 +217,7 @@ namespace Proyecto1
 			}
 		}
 
-		static void ModificarEstadoObra(Empresa emp)
+		static void ModificarEstadoObr(Empresa emp)
 		{
 			Console.WriteLine("Ingrese el codigo de obra: ");
 			int codObra = int.Parse(Console.ReadLine());
@@ -234,6 +236,7 @@ namespace Proyecto1
 					emp.EliminarObra(elem);           //Elimino la obra de la lista de obras
 					emp.AgregarObraFin(elem);         //La agrego a la lista de obras finalizadas
 				}
+				break;
 			}
 			Console.WriteLine("Se logro actualizar el estado de la obra.");
 		}
