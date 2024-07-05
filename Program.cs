@@ -162,41 +162,46 @@ namespace Proyecto1
 		
 	    static void AgregarJefeDeOBra(Empresa emp)
 		{
-		Console.Write("Ingrese nombre completo: ");
-        	string nombreObrero = Console.ReadLine();
-        	Console.Write("Ingrese dni: ");
-        	int dni = int.Parse(Console.ReadLine());
-        	Console.Write("Ingrese número de legajo: ");
-        	int nroLegajo = int.Parse(Console.ReadLine());
-        	Console.Write("Ingrese el sueldo: ");
-        	double sueldo =  double.Parse(Console.ReadLine());
-		Console.Write("Ingrese su cargo: ");
-		string cargo = Console.ReadLine();
-		Console.WriteLine("Asigne número de obra:");
-		int numObra = int.Parse(Console.ReadLine());
-		Console.WriteLine("Asigne un grupo libre(número de grupo): ");
-		int numGrupo = int.Parse(Console.ReadLine());
-		Console.WriteLine("Ingrese la bonficacion que se la va a dar al jefe: ");
-		double bonificacion = double.Parse(Console.ReadLine());
+		try
+			{
+				Console.Write("Ingrese nombre completo: ");
+        		string nombreObrero = Console.ReadLine();
+        		Console.Write("Ingrese dni: ");
+        		int dni = int.Parse(Console.ReadLine());
+        		Console.Write("Ingrese número de legajo: ");
+        		int nroLegajo = int.Parse(Console.ReadLine());
+        		Console.Write("Ingrese el sueldo: ");
+        		double sueldo =  double.Parse(Console.ReadLine());
+        		string cargo = "Jefe Obra";
+				Console.WriteLine("Asigne número de obra:");
+				int numObra = int.Parse(Console.ReadLine());
+				Console.WriteLine("Asigne un grupo libre(número de grupo): ");
+				int numGrupo = int.Parse(Console.ReadLine());
+				Console.WriteLine("Ingrese la bonficacion que se la va a dar al jefe: ");
+				double bonificacion = double.Parse(Console.ReadLine());
 			
-		JefeObra jfObra = new JefeObra(nombreObrero, dni, nroLegajo, sueldo, cargo, numObra, numGrupo, bonificacion);
-		ArrayList listObras = new ArrayList();  //Tomo la lista de obras y grupos
-		listObras = emp.TodasObras();
-		ArrayList listGrupos = new ArrayList();
-		listGrupos = emp.TodosGrupos();
-		foreach (Obra elem in listObras) { //Recorro la lista de obras de la empresa
-			foreach (Grupo ele in listGrupos) {  //Recorro la lista de grupos de la empresa
-				if (elem.CodigoObra == numObra && ele.NroObra == numObra) {         //Comparo el codigo de la obra y grupo con los que pido por teclado
-					if (elem.DniJefObra != 0 && ele.DniJefObra != 0) {          //Una vez que encuentre la obra y grupo que pido por teclado 
-						throw new PuestoOcupado();                          //Veo si el puesto esta ocupado tanto en la obra como el grupo 
-						}                                                           //Si esta ocupado dispara el throw de la excepción  
-						else{                                                       //Sino agrego el jefe de obra a la lista de obreros y modifico el dniJefeObra en la obra y el grupo    
-						 	emp.AgregarObrero(jfObra);
+				JefeObra jfObra = new JefeObra(nombreObrero, dni, nroLegajo, sueldo, cargo, numObra, numGrupo, bonificacion);
+				ArrayList listObras = new ArrayList();
+				listObras = emp.TodasObras();
+				ArrayList listGrupos = new ArrayList();
+				listGrupos = emp.TodosGrupos();
+				foreach (Obra elem in listObras) { //Recorro la lista de obras de la empresa
+					foreach (Grupo ele in listGrupos) {  //Recorro la lista de grupos de la empresa
+						if (elem.CodigoObra == numObra && ele.NroObra == numObra) {  //Comparo el codigo de la obra y grupo con los que pido por teclado
+							if (elem.DniJefObra != 0 && ele.NroLegajoJfObra != 0) {  //Una vez que encuentre la obra y grupo que pido por teclado
+								throw new PuestoOcupado();                      //Veo si el puesto esta ocupado tanto en la obra como el grupo
+						}                                                   //Si esta ocupado dispara el throw de la excepción
+						else{                                               //Sino agrego el jefe de obra a la lista de obreros y modifico el dniJefeObra en la obra y el grupo
+							emp.AgregarObrero(jfObra);
 							elem.DniJefObra = dni;
-							ele.DniJefObra = dni; }
+							ele.NroLegajoJfObra = nroLegajo;
+							Console.WriteLine("El jefe de Obra se agrego.");
+						}
 					}
 				}
-			}
+			  }
+		 	}
+			catch(PuestoOcupado){Console.WriteLine("El puesto esta ocupado.");}
 		}
 		public class PuestoOcupado: Exception
 		{}
