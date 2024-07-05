@@ -231,11 +231,11 @@ namespace Proyecto1
 			foreach(Obra elem in listaObras) {                //Recorro la lista de obras 
 				if (elem.CodigoObra == codObra) {         //Si el codigo de la obra es igual al del elem
 					elem.EstadoAvance = estadoObra;   //Actualizo el estado de avance de la obra
-				}
-				if(elem.CodigoObra == 100){               //Si el estado llega a 100
-					emp.EliminarObra(elem);           //Elimino la obra de la lista de obras
-					emp.AgregarObraFin(elem);         //La agrego a la lista de obras finalizadas
-				}
+					if(elem.EstadoAvance == 100){               //Si el estado llega a 100
+						emp.EliminarObra(elem);           //Elimino la obra de la lista de obras
+						emp.AgregarObraFin(elem);         //La agrego a la lista de obras finalizadas
+					}
+				}	
 				break;
 			}
 			Console.WriteLine("Se logro actualizar el estado de la obra.");
