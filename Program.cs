@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 
-namespace Proyecto
+namespace Proyecto1
 {
 	class Program
 	{
@@ -13,11 +13,11 @@ namespace Proyecto
 			Obra obra3 = new Obra("Alfredo", 1565458, 3,"construcción", 0, 0, 100000);
 			Obra obra4 = new Obra("Inc", 245665, 4, "construcción", 60, 0, 120000);
 			Obra obra5 = new Obra("Argn", 864164, 5, "remodelación", 20, 0, 9000);
-			Grupo grupo1 = new Grupo(1,0);
-			Grupo grupo2 = new Grupo(2,0);
-			Grupo grupo3 = new Grupo(3,0);
-			Grupo grupo4 = new Grupo(4,0);
-			Grupo grupo5 = new Grupo(5,0);
+			Grupo grupo1 = new Grupo(1);
+			Grupo grupo2 = new Grupo(2);
+			Grupo grupo3 = new Grupo(3);
+			Grupo grupo4 = new Grupo(4);
+			Grupo grupo5 = new Grupo(5);
 			emp.AgregarObra(obra1);
 			emp.AgregarObra(obra2);
 			emp.AgregarObra(obra3);
@@ -31,7 +31,7 @@ namespace Proyecto
 			try {
 				Console.WriteLine("Menú de opciones:");
            	 		Console.WriteLine("1. Contratar un nuevo obrero");
-            	      		Console.WriteLine("2. Eliminar un obrero");
+            			Console.WriteLine("2. Eliminar un obrero");
             			Console.WriteLine("3. Contratar a un jefe de obra");
 		    		Console.WriteLine("4. Modificar el estado de avance de una obra.");
 	    			Console.WriteLine("5. Ver listados y procentajes");
@@ -54,9 +54,9 @@ namespace Proyecto
                     					AgregarJefeDeOBra(emp);
                     					break;
                 				case "4":
-                    					ModificarEstadoObra();
+                    					ModificarEstadoObra(emp);
                     					break;
-                    				case "5":
+                    			case "5":
 		    		 			Console.WriteLine("Submenú de opciones:");
 		     		 			Console.WriteLine("1. Mostrar listado de obreros");
 		     		 			Console.WriteLine("2. Mostrar listado de obras en ejecución");
@@ -67,21 +67,22 @@ namespace Proyecto
 		             				Console.Write("Seleccione una opción: ");
 		     		 			string op = Console.ReadLine();
 		     		 			while (op != "6") {
-		     		 				switch(op){
+		     		 				switch(op)
+		     		 				{
                             						case "1":
-		     		 						ListaDeObreros(emp);
+		     		 						ListaObreros(emp);
                              							break;
 			    						case "2":
-                    	         						ListaObrasEj();
+                    	         						ListaObrasEj(emp);
                     	         						break;
 			    						case "3":
-                            	 						ListaObrasFin();
+                            	 						ListaObrasFin(emp);
                             	 						break;
 			    						case "4":
-                            	 						ListaObreros();
+                            	 						ListaDeObreros(emp);
                             	 						break;
 			    						case "5":
-                            	 						ListaObrasEje();
+                            	 						ListaObrasEje(emp);
                             	 						break;
                             						default:
                             	 						Console.WriteLine("Opción no válida.");
@@ -90,8 +91,12 @@ namespace Proyecto
 		     		 			}
 		     		 			break;
 		     		 		case "6":
-                    					EliminarJefeObra();
-                    					break;		
+                    					EliminarJefeObra(emp);
+                    					break;
+                    				case "7":
+                    					Console.Write("Saliendo del Programa...");
+                    					break;
+                    					
                 				default:
                     					Console.WriteLine("Opción no válida.");
                     					break;		
@@ -99,27 +104,27 @@ namespace Proyecto
 				}
 	        	}
 	    		catch(Exception e){
-				console.WriteLine(e.Message); //Muestra un mensaje si captura algo
+				Console.WriteLine(e.Message); //Muestra un mensaje si captura algo
 			}
 			Console.Write("Press any key to continue . . . ");
 			Console.ReadKey(true);
 		}
 		static void AgregarObreros(Empresa emp)
 		{  
-        		Console.Write("Ingrese nombre completo: ");
-        		string nombreObrero = Console.ReadLine();
-        		Console.Write("Ingrese dni: ");
-        		int dni = int.Parse(Console.ReadLine());
-        		Console.Write("Ingrese número de legajo: ");
-        		int nroLegajo = int.Parse(Console.ReadLine());
-        		Console.Write("Ingrese el sueldo: ");
-        		double sueldo =  double.Parse(Console.ReadLine());
-			Console.Write("Ingrese su cargo: ");
-			string cargo = Console.ReadLine();
+        	Console.Write("Ingrese nombre completo: ");
+        	string nombreObrero = Console.ReadLine();
+        	Console.Write("Ingrese dni: ");
+        	int dni = int.Parse(Console.ReadLine());
+        	Console.Write("Ingrese número de legajo: ");
+        	int nroLegajo = int.Parse(Console.ReadLine());
+        	Console.Write("Ingrese el sueldo: ");
+        	double sueldo =  double.Parse(Console.ReadLine());
+		Console.Write("Ingrese su cargo: ");
+		string cargo = Console.ReadLine();
 		
-        		Obrero nuevoObrero = new Obrero(nombreObrero, dni, nroLegajo, sueldo, cargo);
-        		emp.AgregarObrero(nuevoObrero);
-        		Console.WriteLine("Obrero agregado correctamente.");
+        	Obrero nuevoObrero = new Obrero(nombreObrero, dni, nroLegajo, sueldo, cargo);
+        	emp.AgregarObrero(nuevoObrero);
+        	Console.WriteLine("Obrero agregado correctamente.");
     		}
 		
 		static void EliminarObrero(Empresa emp)
@@ -132,7 +137,7 @@ namespace Proyecto
         		foreach(Obrero o in listObreros)
         		{
         			if(o.NroLegajo == nroLegajo){
-        				emp.ELiminarObrero(o);
+        				emp.EliminarObrero(o);
         				Console.WriteLine("El obrero se elimino con exito.");
         			}
         			else{
@@ -143,47 +148,47 @@ namespace Proyecto
 
 			ArrayList listaGrupos = emp.TodosGrupos();
         		foreach (Grupo elem in listaGrupos) {
-        		if (elem.NroObra == codObr) {
-        			ArrayList listaIntegrantes = elem.TodosIntegrantes();
-        			foreach(Obrero ele in listaIntegrantes){
-        				if (ele.NroLegajo == nroLegajo) {
-        					elem.EliminarObrero(ele);
+        			if (elem.NroObra == CodigoObra) {
+        				ArrayList listaIntegrantes = elem.TodosIntegrantes();
+        				foreach(Obrero ele in listaIntegrantes){
+        					if (ele.NroLegajo == nroLegajo) {
+        						elem.EliminarObrero(ele);
         				}
         				break; //Dejamos de recorrer la lista
         			}
         		}
         	}
-    		}
+    	}
 		
-	        static void AgregarJefeDeOBra(Empresa emp)
+	    static void AgregarJefeDeOBra(Empresa emp)
 		{
-			Console.Write("Ingrese nombre completo: ");
-        		string nombreObrero = Console.ReadLine();
-        		Console.Write("Ingrese dni: ");
-        		int dni = int.Parse(Console.ReadLine());
-        		Console.Write("Ingrese número de legajo: ");
-        		int nroLegajo = int.Parse(Console.ReadLine());
-        		Console.Write("Ingrese el sueldo: ");
-        		double sueldo =  double.Parse(Console.ReadLine());
-			Console.Write("Ingrese su cargo: ");
-			string cargo = Console.ReadLine();
-			Console.WriteLine("Asigne número de obra:");
-			int numObra = int.Parse(Console.ReadLine());
-			Console.WriteLine("Asigne un grupo libre(número de grupo): ");
-			int numGrupo = int.Parse(Console.ReadLine());
-			Console.WriteLine("Ingrese la bonficacion que se la va a dar al jefe: ");
-			double bonificacion = double.Parse(Console.ReadLine());
+		Console.Write("Ingrese nombre completo: ");
+        	string nombreObrero = Console.ReadLine();
+        	Console.Write("Ingrese dni: ");
+        	int dni = int.Parse(Console.ReadLine());
+        	Console.Write("Ingrese número de legajo: ");
+        	int nroLegajo = int.Parse(Console.ReadLine());
+        	Console.Write("Ingrese el sueldo: ");
+        	double sueldo =  double.Parse(Console.ReadLine());
+		Console.Write("Ingrese su cargo: ");
+		string cargo = Console.ReadLine();
+		Console.WriteLine("Asigne número de obra:");
+		int numObra = int.Parse(Console.ReadLine());
+		Console.WriteLine("Asigne un grupo libre(número de grupo): ");
+		int numGrupo = int.Parse(Console.ReadLine());
+		Console.WriteLine("Ingrese la bonficacion que se la va a dar al jefe: ");
+		double bonificacion = double.Parse(Console.ReadLine());
 			
-			JefeObra jfObra = new JefeObra(nombreObrero, dni, nroLegajo, sueldo, cargo, numObra, numGrupo, bonificacion);
-			ArrayList listObras = new ArrayList();  //Tomo la lista de obras y grupos
-			listObras = emp.TodasObras();
-			ArrayList listGrupos = new ArrayList();
-			listGrupos = emp.TodosGrupos();
-			foreach (Obra elem in listObras) { //Recorro la lista de obras de la empresa
-				foreach (Grupo ele in listGrupos) {  //Recorro la lista de grupos de la empresa
-					if (elem.CodigoObra == numObra && ele.NroObra == numObra) {         //Comparo el codigo de la obra y grupo con los que pido por teclado
-						if (elem.DniJefObra != 0 && ele.DniJefObra != 0) {          //Una vez que encuentre la obra y grupo que pido por teclado 
-							throw new PuestoOcupado();                          //Veo si el puesto esta ocupado tanto en la obra como el grupo 
+		JefeObra jfObra = new JefeObra(nombreObrero, dni, nroLegajo, sueldo, cargo, numObra, numGrupo, bonificacion);
+		ArrayList listObras = new ArrayList();  //Tomo la lista de obras y grupos
+		listObras = emp.TodasObras();
+		ArrayList listGrupos = new ArrayList();
+		listGrupos = emp.TodosGrupos();
+		foreach (Obra elem in listObras) { //Recorro la lista de obras de la empresa
+			foreach (Grupo ele in listGrupos) {  //Recorro la lista de grupos de la empresa
+				if (elem.CodigoObra == numObra && ele.NroObra == numObra) {         //Comparo el codigo de la obra y grupo con los que pido por teclado
+					if (elem.DniJefObra != 0 && ele.DniJefObra != 0) {          //Una vez que encuentre la obra y grupo que pido por teclado 
+						throw new PuestoOcupado();                          //Veo si el puesto esta ocupado tanto en la obra como el grupo 
 						}                                                           //Si esta ocupado dispara el throw de la excepción  
 						else{                                                       //Sino agrego el jefe de obra a la lista de obreros y modifico el dniJefeObra en la obra y el grupo    
 						 	emp.AgregarObrero(jfObra);
@@ -196,12 +201,12 @@ namespace Proyecto
 		public class PuestoOcupado: Exception
 		{}
 		
-		static void ListaDeObreros(Empresa emp)
+		static void ListaObreros(Empresa emp)
 		{
 			ArrayList listaDeObreros = new ArrayList();
 			listaDeObreros = emp.TodosObreros();
 			foreach (Obrero elem in listaDeObreros) {
-				Console.WriteLine(elem.NombreObrero+" "+elem.Cargo+" "+elem.Dni+" $"+elem.Sueldo);
+				Console.WriteLine("Nombre: " + elem.NombreObrero+"   Cargo: "+elem.Cargo+"  DNI:   "+elem.Dni+"  Sueldo: $"+elem.Sueldo);
 			}
 		}
 
@@ -231,8 +236,8 @@ namespace Proyecto
 		{
 			ArrayList listaObrasEj = new ArrayList();
 			listaObrasEj = emp.TodasObras();
-			foreach (Obra obr in listaObrasEj) {
-				Console.WriteLine(obr.CodigoObra +" "+obr.NombreProp+" "+obr.Costo+" "+obr.NombreProp+" "+obr.TipoObra);
+			foreach (Obra obr in listaObrasEj) { 
+				Console.WriteLine("Codigo Obra: " + obr.CodigoObra +"   Nombre del Propietario: "+obr.NombreProp+"   Costo: "+obr.Costo+"  DNI del Propietario: "+obr.DniPro+"   Tipo de Obra: "+obr.TipoObra);
 			}
 		}
 		
@@ -240,18 +245,18 @@ namespace Proyecto
 		{
 			ArrayList listaObrasFin = new ArrayList();
 			listaObrasFin = emp.TodasObrasFin();
-			foreach (Obra ob in listaObrasFin) {
-				Console.WriteLine(ob.NombreProp+" "+ob.NombreProp+" "+ob.Costo+" "+ob.NombreProp+" "+ob.TipoObra);
+			foreach (Obra ob in listaObrasFin) { 
+				Console.WriteLine("Nombre del Propietario: "+ ob.NombreProp+"   DNI del Propietario: "+ob.DniPro+"   Codigo Obra: "+ob.CodigoObra+"    Costo: "+ob.Costo+"   Tipo de Obra: "+ob.TipoObra);
 			}
 		}
 		
-		static void ListaObreros(Empresa emp)
+		static void ListaDeObreros(Empresa emp)
 		{
 			ArrayList listaObre = emp.TodosObreros();
 			foreach (Obrero obr in listaObre) {
 				if(obr.Cargo == "Jefe Obra" || obr.Cargo == "Jefe de Obra")
 				{
-					Console.WriteLine(obr.NombreObrero+" "+obr.Cargo+" "+obr.Dni+" $"+obr.Sueldo);
+					Console.WriteLine("Nombre: " +obr.NombreObrero+" Cargo: "+obr.Cargo+" DNI: "+obr.Dni+" Sueldo: $"+obr.Sueldo);
 				}
 			}
 		}
@@ -289,10 +294,10 @@ namespace Proyecto
 			foreach (Obrero elem in listaObreros) {                //Recorro la lista de obreros
 				foreach (Obra ele in listaObras) {             //Recorro la lista de obras
 					foreach (Grupo el in listaGrupos) {    //Recorro la lista de grupos
-						if (elem.Dni == dniJFObra && ele.DniJefObra == dniJFObra && el.NroLegajoJfObra == nroLegajoJFObra) { //Si el dni es igual al de elem.Dni y el.Dni JeFObra y el nro legajo al de el.NroLegajo
-							emp.ELiminarObrero(elem); //El jefe de obra se elimina de la lista de obreros de la empresa
+						if (elem.Dni == dniJFObra && ele.DniJefObra == dniJFObra && el.NroLegajoJefObra == nroLegajoJFObra) { //Si el dni es igual al de elem.Dni y el.Dni JeFObra y el nro legajo al de el.NroLegajo
+							emp.EliminarObrero(elem); //El jefe de obra se elimina de la lista de obreros de la empresa
 							ele.DniJefObra = 0;       //Ponemos el dni de jefe de obra en cero
-							el.NroLegajoJfObra = 0;   //El nro de legajo tambien
+							el.NroLegajoJefObra = 0;   //El nro de legajo tambien
 						}
 						break; //Deja de recorrer la lista;
 					}
